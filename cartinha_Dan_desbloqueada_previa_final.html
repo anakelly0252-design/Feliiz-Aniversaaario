@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Uma surpresa para o Dan ❤️</title>
+<style>
+:root { color-scheme:light; --rose:#b94d68; --rose-soft:#f8e7eb; --ink:#513540; --muted:#8b6b76; --paper:#fffdf9; --line:#f0cbd7; --bg:#fff5f6; --gold:#d7a84b; }
+* { box-sizing:border-box; }
+body { margin:0; background:var(--bg); background-image:radial-gradient(circle at 8% 12%,#f6c8d5 0 3px,transparent 4px),radial-gradient(circle at 91% 18%,#f0dca9 0 3px,transparent 4px),radial-gradient(circle at 13% 77%,#e8c8ec 0 3px,transparent 4px),radial-gradient(circle at 88% 82%,#f6c8d5 0 3px,transparent 4px),linear-gradient(135deg,#fff8f6,#fff0f5 52%,#fff9ed); color:var(--ink); font-family:Georgia,'Times New Roman',serif; }
+#app { min-height:100vh; width:100%; background:transparent; padding:28px 16px 48px; }
+.wrap { max-width:760px; margin:0 auto; }
+.top { text-align:center; margin:8px auto 22px; padding:20px 14px 22px; border:1px solid #f0d3dc; border-radius:26px; background:linear-gradient(135deg,#fffdf9eF,#fff0f5f2); box-shadow:0 10px 30px #b94d6810; }
+.top::before { content:'🎈 ✨ 🎂 ✨ 🎈'; display:block; font-size:22px; letter-spacing:4px; margin-bottom:10px; }
+.eyebrow { font:700 11px/1.4 system-ui,sans-serif; letter-spacing:.2em; text-transform:uppercase; color:var(--rose); }
+h1 { font-size:clamp(30px,6vw,46px); line-height:1.08; margin:12px 0 10px; font-weight:normal; }
+.subtitle { color:var(--muted); font-size:16px; line-height:1.5; }
+.countdown { display:inline-block; margin-top:18px; padding:14px 20px; border:1px solid #edc6d2; border-radius:18px; background:linear-gradient(145deg,#fffdf9,#fff0f4); box-shadow:inset 0 0 0 4px #fff8fa; }
+.countdown-label { font:700 10px/1.5 system-ui,sans-serif; letter-spacing:.16em; text-transform:uppercase; color:var(--rose); margin-bottom:7px; }
+.countdown-time { display:flex; gap:12px; justify-content:center; }
+.time-unit { min-width:48px; }
+.time-number { display:block; font:normal 25px/1.2 system-ui,sans-serif; color:var(--rose); }
+.time-caption { display:block; font:10px/1.5 system-ui,sans-serif; color:var(--muted); text-transform:uppercase; }
+.progress { display:flex; gap:8px; margin:24px 0 16px; }
+.dot { flex:1; height:5px; border-radius:20px; background:var(--line); }
+.dot.active { background:var(--rose); }
+.card { position:relative; overflow:hidden; background:linear-gradient(145deg,#fffefa 0%,#fffaf8 58%,#fff0f5 100%); border:1px solid #efcbd6; border-radius:24px; padding:clamp(22px,5vw,42px); box-shadow:0 14px 40px #9f526015, inset 0 0 0 5px #fffaf8; }
+.card::before { content:'✦  ♥  ✦'; display:block; text-align:center; color:#d7a84b; font-size:15px; letter-spacing:8px; margin:-4px 0 22px; }
+.stage-label { font:700 11px/1.4 system-ui,sans-serif; letter-spacing:.16em; text-transform:uppercase; color:var(--rose); margin-bottom:10px; }
+h2 { font-weight:normal; font-size:clamp(25px,4vw,34px); line-height:1.2; margin:0 0 20px; }
+p { font-size:17px; line-height:1.75; margin:0 0 16px; }
+.signature { margin-top:22px; font-style:italic; }
+.actions { display:flex; flex-wrap:wrap; gap:10px; margin-top:26px; }
+button { border:0; border-radius:999px; padding:13px 20px; font:700 14px system-ui,sans-serif; cursor:pointer; transition:transform .15s,opacity .15s; }
+button:hover { transform:translateY(-1px); }
+.primary { background:var(--rose); color:white; }
+.secondary { background:transparent; color:var(--rose); border:1px solid var(--line); }
+.music-card { margin:22px 0; padding:18px; border:1px solid #edc6d2; border-radius:18px; background:linear-gradient(135deg,#fff2f6,#fffaf0); }
+.music-title { font:700 18px system-ui,sans-serif; margin:0 0 5px; }
+.music-sub { font:14px system-ui,sans-serif; color:var(--muted); margin:0 0 14px; }
+.player { margin-top:16px; width:100%; aspect-ratio:16/9; border-radius:12px; overflow:hidden; background:#120d10; }
+.player iframe { width:100%; height:100%; border:0; }
+.hint { font:13px/1.5 system-ui,sans-serif; color:var(--muted); margin-top:10px; }
+.invite { text-align:center; }
+.heart { font-size:32px; margin:0 0 14px; }
+.small { font-size:14px; color:var(--muted); }
+.footer { text-align:center; margin-top:18px; font:12px system-ui,sans-serif; color:var(--muted); }
+.hidden { display:none; }
+.lock-screen { position:fixed; inset:0; z-index:9999; display:flex; align-items:center; justify-content:center; padding:22px; overflow:auto; background:radial-gradient(circle at 10% 15%,#f6c8d5 0 3px,transparent 4px),radial-gradient(circle at 90% 20%,#f0dca9 0 3px,transparent 4px),linear-gradient(135deg,#fff8f6,#fff0f5 52%,#fff9ed); }
+.lock-screen.unlocked { display:none; }
+.lock-box { width:min(100%,560px); text-align:center; padding:clamp(26px,6vw,48px); border:1px solid #efcbd6; border-radius:28px; background:linear-gradient(145deg,#fffefa,#fff0f5); box-shadow:0 18px 55px #9f526020,inset 0 0 0 5px #fffaf8; }
+.lock-icon { font-size:48px; margin-bottom:14px; }
+.lock-box h1 { margin:12px 0; }
+.lock-box p { font-size:16px; }
+.lock-countdown { display:inline-block; margin:10px 0 12px; padding:14px 18px; border:1px solid #edc6d2; border-radius:18px; background:#fffdf9; }
+.lock-note { color:var(--muted); font-size:14px !important; margin-top:10px !important; }
+@media(max-width:520px){.lock-box{border-radius:22px;padding:26px 18px}.lock-box p{font-size:15px}}
+@media(max-width:520px){ #app{padding:16px 10px 30px}.top{padding:18px 10px;border-radius:22px}.top::before{font-size:18px;letter-spacing:2px}.card{border-radius:18px}p{font-size:16px} }
+</style>
+</head>
+<body>
+<main id="app">
+  <div class="wrap">
+    <div id="lockScreen" class="lock-screen unlocked" role="status" aria-live="polite">
+      <div class="lock-box">
+        <div class="lock-icon">🔒</div>
+        <div class="eyebrow">Uma surpresa de aniversário guardada</div>
+        <h1>Calma, Dan… 👀❤️</h1>
+        <p>Essa cartinha está trancadinha por enquanto!</p>
+        <p>Você só vai poder desbloquear sua missão de aniversário à <strong>00h do dia 13/10</strong>, no horário de Brasília. 🇧🇷</p>
+        <div class="lock-countdown">
+          <div class="countdown-label">Falta pouquinho para liberar ❤️</div>
+          <div class="countdown-time">
+            <div class="time-unit"><span class="time-number" id="lockDays">00</span><span class="time-caption">dias</span></div>
+            <div class="time-unit"><span class="time-number" id="lockHours">00</span><span class="time-caption">horas</span></div>
+            <div class="time-unit"><span class="time-number" id="lockMinutes">00</span><span class="time-caption">min</span></div>
+            <div class="time-unit"><span class="time-number" id="lockSeconds">00</span><span class="time-caption">seg</span></div>
+          </div>
+        </div>
+        <p class="lock-note">Volte quando o relógio marcar meia-noite… a missão estará esperando por você. 🎁</p>
+      </div>
+    </div>
+    <header class="top">
+      <div class="eyebrow">Uma missão de aniversário</div>
+      <h1>Feliz aniversário, Dan! ❤️</h1>
+      <div class="subtitle">Preparei algumas coisinhas para você… mas vai ter que desbloquear uma por uma. 👀🎁</div>
+      <div class="countdown" aria-live="polite">
+        <div class="countdown-label">A contagem para o seu dia especial ❤️</div>
+        <div class="countdown-time">
+          <div class="time-unit"><span class="time-number" id="days">00</span><span class="time-caption">dias</span></div>
+          <div class="time-unit"><span class="time-number" id="hours">00</span><span class="time-caption">horas</span></div>
+          <div class="time-unit"><span class="time-number" id="minutes">00</span><span class="time-caption">minutos</span></div>
+          <div class="time-unit"><span class="time-number" id="seconds">00</span><span class="time-caption">segundos</span></div>
+        </div>
+      </div>
+    </header>
+    <div class="progress" aria-label="Progresso da surpresa"><span class="dot active"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span></div>
+    <section class="card" id="stage1">
+      <div class="stage-label">Etapa 1 de 4 · Abra primeiro</div>
+      <h2>Uma cartinha para você, Dan ❤️</h2>
+      <p>Danilinho, ❤️</p>
+      <p>Antes de você abrir os presentinhos que preparei, queria deixar algumas palavrinhas escritas, porque existem coisas que merecem ser ditas com carinho, e seu aniversário é uma oportunidade linda de te lembrar o quanto desejo coisas boas para você. 🥹❤️</p>
+      <p>Primeiramente, quero te desejar um novo ciclo cheio de felicidade, saúde, paz, amor e muitas realizações. Que Deus esteja sempre à frente dos seus passos, iluminando seus caminhos, abençoando suas escolhas e te dando força e sabedoria para enfrentar os desafios que aparecerem pelo caminho.</p>
+      <p>Desejo, de coração, que você tenha muito sucesso em tudo aquilo que se dedicar, que seus planos saiam do papel, que seus esforços sejam recompensados e que você consiga realizar cada um dos sonhos que guarda aí dentro desse coraçãozinho. Que nunca te faltem coragem para ir atrás do que deseja, paciência para respeitar seu próprio tempo e motivos para se orgulhar de tudo o que vem construindo. E, mesmo quando as coisas ficarem difíceis, espero que você nunca se esqueça da capacidade que tem de conquistar coisas incríveis. ❤️</p>
+      <p>Também desejo que a vida te presenteie com momentos leves, dias felizes, boas surpresas e pessoas que façam bem ao seu coração. Que você possa sorrir bastante, conhecer lugares novos, viver experiências bonitas e colecionar lembranças que, daqui a muitos anos, te façam sorrir de novo.</p>
+      <p>E sabe, Dan? Espero que você nunca perca esse seu jeitinho de ser, seus sonhos e essa vontade de construir seu futuro. Torço muito para que você conquiste tudo aquilo que deseja e que, no meio de tanta correria, estudos e planos, também encontre tempo para aproveitar a vida e ser feliz durante o caminho, não só quando chegar ao destino. Você merece que coisas bonitas aconteçam na sua vida! 🥹❤️</p>
+      <p>Preparei essa pequena surpresa porque queria fazer parte, de alguma maneira, do seu aniversário, mesmo com a distância entre a gente. Queria que você tivesse um pedacinho do meu carinho para guardar e que, quando visse cada detalhe, soubesse que alguém dedicou um tempinho pensando em como te fazer sorrir.</p>
+      <p>Espero que goste de tudo, porque cada coisinha foi pensada com muito carinho. E, se eu conseguir arrancar um sorrisinho desse rostinho, já vou ficar feliz! Afinal, seu aniversário é uma data especial, e eu queria que você se sentisse lembrado e recebesse um pouquinho de todo o bem que desejo para você. ❤️</p>
+      <p>Feliz aniversário, meu bem! Que esse novo ciclo seja lindo, que Deus te proteja sempre e que você tenha muitas razões para agradecer, comemorar e sonhar cada vez mais alto. Que venham novas conquistas, sonhos realizados e motivos de sobra para comemorar! 🥹❤️</p>
+      <p>Aproveita sua cartinha, viu, homi? KKKKKKK. 🤏🏻❤️ Mas não vai ficar todo convencido, porque isso é só a primeira etapa da missão! Ainda tem surpresinhas esperando por você! 👀🎁</p>
+      <p class="signature">Com carinho,<br>Aninha ❤️</p>
+      <div class="actions"><button class="primary" onclick="go(2)">Abrir a próxima surpresa 🎁</button></div>
+    </section>
+    <section class="card hidden" id="stage2">
+      <div class="stage-label">Etapa 2 de 4 · Um presente com música</div>
+      <h2>Uma lembrancinha para você 🎶</h2>
+      <p>Dan, escolhi uma caixinha de música do Henrique &amp; Juliano porque queria te dar algo que tivesse a sua cara. 🤠❤️</p>
+      <p>Espero que ela se torne uma lembrancinha bonita desse aniversário e que, quando você olhar para ela, se lembre desse carinho.</p>
+      <p>E, para acompanhar esse presentinho, escolhi uma música para você ouvir aqui no meio da cartinha. Quero que você dê o play, aproveite esse pedacinho da surpresa e depois continue lendo. 🥹❤️</p>
+      <div class="music-card">
+        <div class="music-title">♫ Seu Perfil</div>
+        <div class="music-sub">Henrique &amp; Juliano · versão oficial ao vivo</div>
+        <button class="primary" id="playBtn" onclick="playSong()">▶ Dar play na nossa música</button>
+        <div id="playerWrap" class="player hidden" aria-label="Player da música Seu Perfil"><iframe id="ytPlayer" title="Seu Perfil — Henrique e Juliano" allow="autoplay; encrypted-media; picture-in-picture" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div>
+        <p class="hint">A música vai tocar aqui na cartinha para você poder ouvir enquanto continua lendo. Se o vídeo não carregar, <a id="youtubeFallback" href="https://www.youtube.com/results?search_query=Henrique+e+Juliano+Seu+Perfil+oficial" target="_blank" rel="noopener noreferrer" style="color:var(--rose);font-weight:bold">abra a música no YouTube 🎵</a> e depois volte para continuar. ❤️</p>
+        <div class="hint" id="playerHint">Toque em “Dar play” e deixe o player aberto enquanto lê o restante da etapa. ❤️</div>
+      </div>
+      <p>Espero que você goste da música e do presentinho que escolhi com tanto carinho. ❤️</p>
+      <p>Mas calma, Dan! KKKKKKK. 🤏🏻😂 Você achou mesmo que eu prepararia uma única surpresa?</p>
+      <p>Além da caixinha, tem outro presentinho esperando por você, mas esse vai continuar em segredo até a hora certa! 👀🎁</p>
+      <div class="actions"><button class="primary" onclick="go(3)">Quero ver a próxima etapa 👀</button></div>
+    </section>
+    <section class="card hidden invite" id="stage3">
+      <div class="stage-label">Etapa 3 de 4 · Um convite especial</div>
+      <div class="heart">💌</div>
+      <h2>Dan, você está convidado!</h2>
+      <p>Quero te levar para comer alguma coisa gostosa no <strong>Bosco</strong>, ter um momentinho bom com você, conversar sem pressa, dar risada e festejar seu aniversário com muito carinho. ❤️🥹</p>
+      <p>Quero que seja um momento gostoso, só nosso, para celebrar sua vida e fazer você se sentir ainda mais especial. Como a gente mora longe, combinamos uma data que fique boa para nós dois, tá, Dan? O importante é a gente conseguir estar junto e comemorar com todo o carinho que você merece. ❤️</p>
+      <p class="small">Aceitar o convite desbloqueia a última mensagem — mas não revela o presente secreto! 👀</p>
+      <div class="actions" style="justify-content:center"><button class="primary" onclick="acceptInvite()">Aceito o convite, Aninha ❤️</button><button class="secondary" onclick="go(2)">Voltar para a música</button></div>
+      <p class="hint">Ao aceitar, o WhatsApp abrirá com uma mensagem pronta para você enviar à Aninha. ❤️</p>
+    </section>
+    <section class="card hidden invite" id="stage4">
+      <div class="stage-label">Etapa 4 de 4 · Missão desbloqueada</div>
+      <div class="heart">🥹❤️</div>
+      <h2>AAAAAAH, EU SABIA QUE VOCÊ IA ACEITAR! KKKKKKK.</h2>
+      <p>Agora temos um encontro para planejar! Mas ainda existe um último segredo esperando por você.</p>
+      <p>Preparei uma última surpresa que não vou revelar por mensagem, nem por foto, nem por pistas. Você só vai descobrir quando estivermos juntos, comemorando seu aniversário. 🥹❤️</p>
+      <p>Sim, Dan! Vai ter que esperar para descobrir! KKKKKK. 🤏🏻</p>
+      <p>Por enquanto, fica o convite, a curiosidade e a promessa de um momento preparado com muito carinho.</p>
+      <p><strong>Missão desbloqueada. Última surpresa reservada para o nosso encontro. ❤️</strong></p>
+      <p class="signature">Com carinho,<br>Aninha ❤️</p>
+      <div class="actions" style="justify-content:center"><button class="secondary" onclick="go(1)">Ler a cartinha de novo 💌</button></div>
+    </section>
+    <div class="footer">Feito com carinho pela Aninha ❤️</div>
+  </div>
+</main>
+<script>
+function go(n){
+  for(let i=1;i<=4;i++) document.getElementById('stage'+i).classList.toggle('hidden',i!==n);
+  document.querySelectorAll('.dot').forEach((d,i)=>d.classList.toggle('active',i<n));
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+const unlockTarget = new Date('2026-10-13T00:00:00-03:00').getTime();
+
+function updateLockCountdown(){
+  const remaining = Math.max(0, unlockTarget - Date.now());
+  const days = Math.floor(remaining / 86400000);
+  const hours = Math.floor((remaining % 86400000) / 3600000);
+  const minutes = Math.floor((remaining % 3600000) / 60000);
+  const seconds = Math.floor((remaining % 60000) / 1000);
+  document.getElementById('lockDays').textContent = String(days).padStart(2,'0');
+  document.getElementById('lockHours').textContent = String(hours).padStart(2,'0');
+  document.getElementById('lockMinutes').textContent = String(minutes).padStart(2,'0');
+  document.getElementById('lockSeconds').textContent = String(seconds).padStart(2,'0');
+  document.getElementById('lockScreen').classList.add('unlocked');
+  document.getElementById('lockScreen').setAttribute('aria-hidden','true');
+}
+
+function updateCountdown(){
+  const target = unlockTarget;
+  const remaining = Math.max(0, target - Date.now());
+  const days = Math.floor(remaining / 86400000);
+  const hours = Math.floor((remaining % 86400000) / 3600000);
+  const minutes = Math.floor((remaining % 3600000) / 60000);
+  const seconds = Math.floor((remaining % 60000) / 1000);
+  document.getElementById('days').textContent = String(days).padStart(2,'0');
+  document.getElementById('hours').textContent = String(hours).padStart(2,'0');
+  document.getElementById('minutes').textContent = String(minutes).padStart(2,'0');
+  document.getElementById('seconds').textContent = String(seconds).padStart(2,'0');
+  if(remaining === 0) document.querySelector('.countdown-label').textContent = 'Hoje é o seu dia especial! Feliz aniversário, Dan! ❤️';
+}
+updateCountdown();
+updateLockCountdown();
+setInterval(() => {
+  updateCountdown();
+  updateLockCountdown();
+},1000);
+function playSong(){
+  const wrap=document.getElementById('playerWrap');
+  const frame=document.getElementById('ytPlayer');
+  if(!frame.src) frame.src='https://www.youtube-nocookie.com/embed/ZZwKdjIAcR4?autoplay=1&playsinline=1&rel=0';
+  wrap.classList.remove('hidden');
+  document.getElementById('playBtn').textContent='♫ Música aberta';
+  document.getElementById('playerHint').textContent='Prontinho! Deixe a música tocando no player acima enquanto lê o restante da cartinha. Se não começar, toque no play dentro do vídeo. ❤️';
+}
+function acceptInvite(){
+  const message='Aninhaaa, eu aceito o convite! ❤️🥹 Vamos combinar o dia para irmos ao Bosco!';
+  window.open('https://wa.me/5511948834563?text='+encodeURIComponent(message),'_blank');
+  go(4);
+}
+</script>
+</body>
+</html>
